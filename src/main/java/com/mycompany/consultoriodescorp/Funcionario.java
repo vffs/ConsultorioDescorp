@@ -22,14 +22,18 @@ public class Funcionario extends Usuario implements Serializable{
     
     @Enumerated(EnumType.STRING)
     @Column(name="TXT_TIPO_FUNCIONARIO")
-    private String tipo;
+    private TipoFuncionario tipo;
 
-    public String getTipo() {
+    public TipoFuncionario getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoFuncionario tipo) {
         this.tipo = tipo;
     }
+
+    
+
+   
     
 }
