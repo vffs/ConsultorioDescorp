@@ -1,8 +1,6 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Funcionario;
 import com.mycompany.consultoriodescorp.Paciente;
-import com.mycompany.consultoriodescorp.TipoFuncionario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -39,8 +37,8 @@ public class TestePacienteCrud {
     public static void setUpClass() {
         //logger.setLevel(Level.INFO);
         logger.setLevel(Level.SEVERE);
-        emf = Persistence.createEntityManagerFactory("ConsultorioDescorp");
-//        DbUnitUtil.inserirDados();
+        emf = Persistence.createEntityManagerFactory("consultorio");
+        DbUnitUtil.inserirDados();
     }
 
     @AfterClass
@@ -77,7 +75,7 @@ public class TestePacienteCrud {
     @Test
     public void t01_persistirPaciente() {
         logger.info("Executando t01: persistir paciente");
-        Paciente fun=em.find(Paciente.class, new Long(1));
+        
         Paciente paciente=new Paciente();
         
         paciente.setNome("Maria Joana");
@@ -125,11 +123,11 @@ public class TestePacienteCrud {
     @Test
     public void t04_persistirPaciente() {
         logger.info("Executando t01: persistir Paciente");
-        Paciente pac=em.find(Paciente.class, new Long(2));
+        
         Paciente paciente=new Paciente();
-        paciente.setNome("Joao Augusto");
-        paciente.setLogin("JoaoAugusto");
-        paciente.setEmail("joaoaugusto@gmail.com");
+        paciente.setNome("Joao Pedro");
+        paciente.setLogin("Joao Pedro");
+        paciente.setEmail("joaopedro@gmail.com");
         paciente.setSenha("joao123");
         paciente.setSexo("M");
         paciente.setPlano("Amil");
@@ -141,7 +139,7 @@ public class TestePacienteCrud {
 
     @Test
     public void t05_delete() {
-        logger.info("Executando t31: DELETE paciente");
+        logger.info("Executando t05: DELETE paciente");
         Paciente paciente;
         String consulta="SELECT p FROM Paciente p WHERE p.id=?1";
         Query query = em.createQuery(consulta);

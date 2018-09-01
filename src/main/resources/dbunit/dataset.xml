@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    
+    <!-- Usuario id = 1 (paciente) -->
+    <TB_USUARIO DISC_USUARIO = "P" TXT_NOME="Maria Joaquina" TXT_EMAIL = "mariajoaquina@gmail.com" 
+                TXT_LOGIN= "mariajoquina" TXT_SENHA = "Maria123" TXT_SEXO="F">
+    </TB_USUARIO>
+                <TB_PACIENTE ID_USUARIO="1" TXT_PLANO="Unimed"></TB_PACIENTE>
+
+    <!-- Usuario id = 2 (paciente) -->
+    <TB_USUARIO DISC_USUARIO = "P" TXT_NOME="Joao Augusto" TXT_EMAIL = "Joaoaugusto@gmail.com" 
+                TXT_LOGIN = "joaoaugusto" TXT_SENHA = "joao123" TXT_SEXO="M">
+    </TB_USUARIO>
+                <TB_PACIENTE ID_USUARIO="2" TXT_PLANO="Hapvida"></TB_PACIENTE>
+   
+    <!-- Usuario id = 3 (paciente) -->
+    <TB_USUARIO DISC_USUARIO = "P" TXT_NOME="Luiz Miguel" TXT_EMAIL = "luizmiguel@gmail.com" 
+                TXT_LOGIN = "luizmiguel" TXT_SENHA = "luiz123" TXT_SEXO="M">
+    </TB_USUARIO>
+                <TB_PACIENTE ID_USUARIO="3" TXT_PLANO="Sul America"></TB_PACIENTE>
+
+    <!-- Usuario id = 4 (paciente) -->
+     <TB_USUARIO DISC_USUARIO = "P" TXT_NOME="Catarina Luiza" TXT_EMAIL = "catarinaluiza@gmail.com" 
+                 TXT_LOGIN = "catarinaluiza" TXT_SENHA = "catarina123" TXT_SEXO="F">
+     </TB_USUARIO>
+                 <TB_PACIENTE ID_USUARIO="4" TXT_PLANO="Unimed"></TB_PACIENTE>  
+
+    <!-- Usuario id = 5 (funcionario) -->
+    <TB_USUARIO DISC_USUARIO = "F" TXT_NOME="Joao Rafael" TXT_EMAIL = "Joaorafael@gmail.com" 
+                TXT_LOGIN= "joaorafael" TXT_SENHA = "joaor123" TXT_SEXO="M">
+    </TB_USUARIO>
+                <TB_FUNCIONARIO ID_USUARIO="5" TXT_TIPO_FUNCIONARIO="MEDICO"></TB_FUNCIONARIO>
+
+    <!-- Usuario id = 6 (funcionario) -->
+    <TB_USUARIO DISC_USUARIO = "F" TXT_NOME="Ana Clara" TXT_EMAIL = "anaclara@gmail.com" 
+                TXT_LOGIN= "anaclara" TXT_SENHA = "anaclara123" TXT_SEXO="F">
+    </TB_USUARIO>
+                <TB_FUNCIONARIO ID_USUARIO="6" TXT_TIPO_FUNCIONARIO="SECRETARIA"></TB_FUNCIONARIO>   
+
+    <!-- Usuario id = 7 (funcionario) -->
+    <TB_USUARIO DISC_USUARIO = "F" TXT_NOME="Jose Luiz" TXT_EMAIL = "Joseluiz@gmail.com" 
+                TXT_LOGIN = "joseluiz" TXT_SENHA = "joseluiz123" TXT_SEXO="M">
+    </TB_USUARIO>
+
+                <TB_FUNCIONARIO ID_USUARIO="7" TXT_TIPO_FUNCIONARIO="ATENDENTE"></TB_FUNCIONARIO>
+    <!-- Usuario id = 8 (paciente) -->    
+    <TB_USUARIO DISC_USUARIO = "P" TXT_NOME="Maria Juliana" TXT_EMAIL = "mariajuliana@gmail.com" 
+                TXT_LOGIN = "mariajuliana" TXT_SENHA = "mariaj123" TXT_SEXO="F">
+    </TB_USUARIO>
+                <TB_PACIENTE ID_USUARIO="8" TXT_PLANO="Hapvida"></TB_PACIENTE> 
+
+</dataset>

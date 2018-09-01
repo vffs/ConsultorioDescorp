@@ -38,8 +38,8 @@ public class TesteFuncionarioCrud {
     public static void setUpClass() {
         //logger.setLevel(Level.INFO);
         logger.setLevel(Level.SEVERE);
-        emf = Persistence.createEntityManagerFactory("ConsultorioDescorp");
-//        DbUnitUtil.inserirDados();
+        emf = Persistence.createEntityManagerFactory("consultorio");
+        DbUnitUtil.inserirDados();
     }
 
     @AfterClass
@@ -76,7 +76,7 @@ public class TesteFuncionarioCrud {
     @Test
     public void t01_persistirFuncionario() {
         logger.info("Executando t01: persistir funcionario");
-        Funcionario fun=em.find(Funcionario.class, new Long(1));
+       
         Funcionario funcionario=new Funcionario();
         
         funcionario.setNome("Joaquina Baquita");
@@ -124,7 +124,7 @@ public class TesteFuncionarioCrud {
     @Test
     public void t04_persistirFuncionario() {
         logger.info("Executando t01: persistir funcionario");
-        Funcionario fun=em.find(Funcionario.class, new Long(2));
+        
         Funcionario funcionario= new Funcionario();
         funcionario.setNome("Maria Izabel");
         funcionario.setLogin("mariaiza");
@@ -140,16 +140,16 @@ public class TesteFuncionarioCrud {
 
     @Test
     public void t05_delete() {
-        logger.info("Executando t31: DELETE funcionario");
+        logger.info("Executando t05: DELETE funcionario");
         Funcionario funcionario;
-        String consulta="SELECT f FROM Funcionario f WHERE f.id=?1";
+        String consulta="SELECT f FROM  Funcionario f WHERE f.id=?7";
         Query query = em.createQuery(consulta);
-        long id=1;
-        query.setParameter(1, id);
+        long id=7;
+        query.setParameter(7, id);
             funcionario=(Funcionario)query.getSingleResult();
             em.remove(funcionario);
             em.flush();
-        Funcionario deletado=em.find(Funcionario.class, id);
+        Funcionario deletado=em.find( Funcionario.class, id);
         assertNull(deletado);
         
     }
