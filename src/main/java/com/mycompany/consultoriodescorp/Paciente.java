@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -17,16 +19,19 @@ import javax.persistence.Table;
 @DiscriminatorValue(value="P")
 @PrimaryKeyJoinColumn(name="ID_USUARIO",referencedColumnName="ID")
 public class Paciente extends Usuario implements Serializable{
+    @Enumerated(EnumType.STRING)
     @Column(name="TXT_PLANO")
-    private String plano;
-
-    public String getPlano() {
+    private TipoPlanoSaude plano;
+    
+    public TipoPlanoSaude getPlano() {
         return plano;
     }
 
-    public void setPlano(String plano) {
+    public void setPlano(TipoPlanoSaude plano) {
         this.plano = plano;
     }
+
+   
     
     
 }

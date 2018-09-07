@@ -2,8 +2,11 @@ package teste;
 
 import com.mycompany.consultoriodescorp.Funcionario;
 import com.mycompany.consultoriodescorp.TipoFuncionario;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -73,59 +76,67 @@ public class TesteFuncionarioCrud {
             fail(ex.getMessage());
         }
     }
+
     @Test
     public void t01_persistirFuncionario() {
         logger.info("Executando t01: persistir funcionario");
-       
-        Funcionario funcionario=new Funcionario();
-        
+
+        Funcionario funcionario = new Funcionario();
+
         funcionario.setNome("Joaquina Baquita");
         funcionario.setLogin("joaquinabaquita");
         funcionario.setEmail("joaquinabaq@gmail.com");
         funcionario.setSenha("joaquina123");
         funcionario.setSexo("F");
         funcionario.setTipo(TipoFuncionario.ATENDENTE);
-              
+
         em.persist(funcionario);
         em.flush();
         assertNotNull(funcionario.getId());
         logger.log(Level.INFO, "Funcionario {0} incluída com sucesso.", funcionario);
     }
-  
-@Test
+
+    @Test
     public void t02_atualizarFuncionario() {
         logger.info("Executando t02: atualizar funcionario");
         Funcionario funcionario;
-        String consulta="SELECT f FROM Funcionario f WHERE f.email=?1";
+        String consulta = "SELECT f FROM Funcionario f WHERE f.email=?1";
         Query query = em.createQuery(consulta);
-        query.setParameter(1,"joaquinabaq@gmail.com");
-        funcionario=(Funcionario)query.getSingleResult();
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, "Joseluiz@gmail.com");
+        funcionario = (Funcionario) query.getSingleResult();
         funcionario.setEmail("joaquinabaquita@gmail.com");
         em.flush();
-        assertEquals("joaquinabaquita@gmail.com",funcionario.getEmail());
-        
+        query.setParameter(1, "joaquinabaquita@gmail.com");
+        funcionario = (Funcionario) query.getSingleResult();
+        assertEquals("joaquinabaquita@gmail.com", funcionario.getEmail());
+
     }
-    
-     @Test
+
+    @Test
     public void t03_atualizarFuncionarioMerge() {
         logger.info("Executando t03: atualizar funcionario com Merge");
         Funcionario funcionario;
-        String consulta="SELECT f FROM Funcionario f WHERE f.login=?1";
+        String consulta = "SELECT f FROM Funcionario f WHERE f.login=?1";
         Query query = em.createQuery(consulta);
-        query.setParameter(1, "joaquinabaquita");
-        funcionario=(Funcionario)query.getSingleResult();
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, "anaclara");
+        funcionario = (Funcionario) query.getSingleResult();
         assertNotNull(funcionario);
         em.clear();
         funcionario.setLogin("joaquinabaq");
         em.merge(funcionario);
         em.flush();
-        assertEquals("joaquinabaq",funcionario.getLogin());
+        query.setParameter(1, "joaquinabaq");
+        funcionario = (Funcionario) query.getSingleResult();
+        assertEquals("joaquinabaq", funcionario.getLogin());
     }
+
     @Test
     public void t04_persistirFuncionario() {
         logger.info("Executando t01: persistir funcionario");
-        
-        Funcionario funcionario= new Funcionario();
+
+        Funcionario funcionario = new Funcionario();
         funcionario.setNome("Maria Izabel");
         funcionario.setLogin("mariaiza");
         funcionario.setEmail("mariaiza@gmail.com");
@@ -142,17 +153,18 @@ public class TesteFuncionarioCrud {
     public void t05_delete() {
         logger.info("Executando t05: DELETE funcionario");
         Funcionario funcionario;
-        String consulta="SELECT f FROM  Funcionario f WHERE f.id=?7";
+        String consulta = "SELECT f FROM  Funcionario f WHERE f.id=?7";
         Query query = em.createQuery(consulta);
-        long id=7;
+        long id = 7;
         query.setParameter(7, id);
-            funcionario=(Funcionario)query.getSingleResult();
-            em.remove(funcionario);
-            em.flush();
-        Funcionario deletado=em.find( Funcionario.class, id);
+        funcionario = (Funcionario) query.getSingleResult();
+        em.remove(funcionario);
+        em.flush();
+        Map map = new HashMap();
+        map.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        Funcionario deletado = em.find(Funcionario.class, id, map);
         assertNull(deletado);
-        
+
     }
 
-    
 }

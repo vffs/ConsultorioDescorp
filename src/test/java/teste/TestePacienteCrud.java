@@ -1,8 +1,12 @@
 package teste;
 
 import com.mycompany.consultoriodescorp.Paciente;
+import com.mycompany.consultoriodescorp.TipoPlanoSaude;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -72,86 +76,96 @@ public class TestePacienteCrud {
             fail(ex.getMessage());
         }
     }
+
     @Test
     public void t01_persistirPaciente() {
         logger.info("Executando t01: persistir paciente");
-        
-        Paciente paciente=new Paciente();
-        
+
+        Paciente paciente = new Paciente();
+
         paciente.setNome("Maria Joana");
         paciente.setLogin("mariajoana");
         paciente.setEmail("mariaj@gmail.com");
         paciente.setSenha("mariaj123");
         paciente.setSexo("F");
-        paciente.setPlano("Unimed");
-              
+        paciente.setPlano(TipoPlanoSaude.HAPVIDA);
+
         em.persist(paciente);
         em.flush();
         assertNotNull(paciente.getId());
         logger.log(Level.INFO, "Funcionario {0} incluída com sucesso.", paciente);
     }
-  
-@Test
+
+    @Test
     public void t02_atualizarpaciente() {
         logger.info("Executando t02: atualizar paciente");
         Paciente paciente;
-        String consulta="SELECT p FROM Paciente p WHERE p.email=?1";
+        String consulta = "SELECT p FROM Paciente p WHERE  p.senha=?1 ";
         Query query = em.createQuery(consulta);
-        query.setParameter(1,"mariaj@gmail.com");
-        paciente=(Paciente)query.getSingleResult();
-        paciente.setEmail("mariajoana@gmail.com");
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, "joao123");
+        paciente = (Paciente) query.getSingleResult();
+        paciente.setSenha("MacacosMeMordam");
         em.flush();
-        assertEquals("mariajoana@gmail.com",paciente.getEmail());
+        query.setParameter(1, "MacacosMeMordam");
+        paciente = (Paciente) query.getSingleResult();
         
+        assertEquals("MacacosMeMordam", paciente.getSenha());
+
     }
-    
-     @Test
+
+    @Test
     public void t03_atualizarPacienteMerge() {
         logger.info("Executando t03: atualizar paciente com Merge");
         Paciente paciente;
-        String consulta="SELECT p FROM Paciente p WHERE p.login=?1";
+        String consulta = "SELECT p FROM Paciente p WHERE p.login=?1";
         Query query = em.createQuery(consulta);
-        query.setParameter(1, "mariajoana");
-        paciente=(Paciente)query.getSingleResult();
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, "mariajoaquina");
+        paciente = (Paciente) query.getSingleResult();
         assertNotNull(paciente);
         em.clear();
         paciente.setLogin("mariaj");
         em.merge(paciente);
         em.flush();
-        assertEquals("mariaj",paciente.getLogin());
+        query.setParameter(1, "mariaj");
+        paciente = (Paciente) query.getSingleResult();
+        assertEquals("mariaj", paciente.getLogin());
     }
+
     @Test
     public void t04_persistirPaciente() {
         logger.info("Executando t01: persistir Paciente");
-        
-        Paciente paciente=new Paciente();
+
+        Paciente paciente = new Paciente();
         paciente.setNome("Joao Pedro");
         paciente.setLogin("Joao Pedro");
         paciente.setEmail("joaopedro@gmail.com");
         paciente.setSenha("joao123");
         paciente.setSexo("M");
-        paciente.setPlano("Amil");
+        paciente.setPlano(TipoPlanoSaude.AMIL);
         em.persist(paciente);
         em.flush();
         assertNotNull(paciente.getId());
-        logger.log(Level.INFO, "Paciente {0} incluída com sucesso.",paciente);
+        logger.log(Level.INFO, "Paciente {0} incluída com sucesso.", paciente);
     }
 
     @Test
     public void t05_delete() {
         logger.info("Executando t05: DELETE paciente");
         Paciente paciente;
-        String consulta="SELECT p FROM Paciente p WHERE p.id=?1";
+        String consulta = "SELECT p FROM Paciente p WHERE p.id=?1";
         Query query = em.createQuery(consulta);
-        long id=1;
+        long id = 1;
         query.setParameter(1, id);
-            paciente=(Paciente)query.getSingleResult();
-            em.remove(paciente);
-            em.flush();
-        Paciente deletado=em.find(Paciente.class, id);
+        paciente = (Paciente) query.getSingleResult();
+        em.remove(paciente);
+        em.flush();
+        Map map = new HashMap();
+        map.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        Paciente deletado = em.find(Paciente.class, id, map);
         assertNull(deletado);
-        
+
     }
 
-    
 }
