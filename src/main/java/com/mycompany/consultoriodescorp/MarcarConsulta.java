@@ -1,9 +1,7 @@
 package com.mycompany.consultoriodescorp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,19 +31,13 @@ public class MarcarConsulta implements Serializable {
     private Date dataConsuta;
     @Column(name = "TXT_HORA")
     private String hora;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TB_CONSULTA_MEDICOS", joinColumns = {
-        @JoinColumn(name = "ID_MARCAR_CONSULTA")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_USUARIO")})
-    private List<Funcionario> medicos;
- 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TB_CONSULTA_PACIENTES", joinColumns = {
-        @JoinColumn(name = "ID_MARCAR_CONSULTA")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_USUARIO")})
-    private List<Paciente> pacientes;
+   /* @JoinColumn(name="ID_USUARIO")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Funcionario medico;*/
+    
+    @JoinColumn(name="ID_USUARIO")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Paciente paciente;
 
     public Long getId() {
         return id;
@@ -72,30 +63,21 @@ public class MarcarConsulta implements Serializable {
         this.hora = hora;
     }
 
-    public List<Funcionario> getMedicos() {
-        return medicos;
+    /*public Funcionario getMedico() {
+        return medico;
     }
 
-    public void setMedicos(Funcionario medico) {
-        
-        if (this.medicos == null) {
-            this.medicos = new ArrayList<>();
-        }
-        this.medicos.add(medico);
-    }
-    
+    public void setMedico(Funcionario medico) {
+        this.medico = medico;
+    }*/
 
-    public List<Paciente> getPacientes() {
-        return pacientes;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacientes(Paciente paciente) {
-        if (this.pacientes == null) {
-            this.pacientes = new ArrayList<>();
-        }
-        this.pacientes.add(paciente);
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
-
 
     @Override
     public int hashCode() {

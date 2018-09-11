@@ -48,5 +48,11 @@
                 TXT_LOGIN = "mariajuliana" TXT_SENHA = "mariaj123" TXT_SEXO="F">
     </TB_USUARIO>
                 <TB_PACIENTE ID_USUARIO="8" TXT_PLANO="HAPVIDA"></TB_PACIENTE> 
+                            
+    <!-- Marcar Consulta id = 1 -->      
+    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-25" TXT_HORA="14:30H" ID_USUARIO="3" ></TB_MARCAR_CONSULTA> 
+    
+     <!-- Marcar Consulta id = 2 -->      
+    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-28" TXT_HORA="14:45H" ID_USUARIO="2" ></TB_MARCAR_CONSULTA>    
 
 </dataset>
