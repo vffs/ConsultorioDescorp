@@ -89,6 +89,8 @@ public class TesteFuncionarioCrud {
         funcionario.setSenha("joaquina123");
         funcionario.setSexo("F");
         funcionario.setTipo(TipoFuncionario.ATENDENTE);
+        funcionario.setEscolaridade("ENSINO SUPERIOR INCOMPLETO");
+        funcionario.setEspecialidade("TECNICO EM ADMINISTRAÇÃO");
 
         em.persist(funcionario);
         em.flush();
@@ -143,6 +145,8 @@ public class TesteFuncionarioCrud {
         funcionario.setSenha("mariaiza123");
         funcionario.setSexo("F");
         funcionario.setTipo(TipoFuncionario.MEDICO);
+        funcionario.setEscolaridade("ENSINO SUPERIOR COMPLETO");
+        funcionario.setEspecialidade("ORTOPEDISTA");
         em.persist(funcionario);
         em.flush();
         assertNotNull(funcionario.getId());
