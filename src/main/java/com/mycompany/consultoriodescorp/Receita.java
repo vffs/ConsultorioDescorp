@@ -1,8 +1,6 @@
 package com.mycompany.consultoriodescorp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,19 +26,12 @@ public class Receita implements Serializable {
     @Column(name = "TXT_NOME_REMEDIO")
     private String nomeRemedio;
     @Column(name = "TXT_TRATAMENTO")
-    private String Tratamento;
+    private String tratamento;
     @Column(name = "TXT_DURACAO")
     private String duracao;
-    @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
+    @OneToOne(fetch = FetchType.LAZY)
     private Funcionario medico;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TB_RECEITAS_PACIENTES", joinColumns = {
-        @JoinColumn(name = "ID_RECEITA")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_USUARIO")})
-    private List<Receita> receitas;
 
     public Long getId() {
         return id;
@@ -61,11 +50,11 @@ public class Receita implements Serializable {
     }
 
     public String getTratamento() {
-        return Tratamento;
+        return tratamento;
     }
 
-    public void setTratamento(String Tratamento) {
-        this.Tratamento = Tratamento;
+    public void setTratamento(String tratamento) {
+        this.tratamento = tratamento;
     }
 
     public String getDuracao() {
@@ -82,18 +71,6 @@ public class Receita implements Serializable {
 
     public void setMedico(Funcionario medico) {
         this.medico = medico;
-    }
-
-    public List<Receita> getReceitas() {
-        return receitas;
-    }
-
-    public void setReceitas(Receita receita) {
-        if (this.receitas == null) {
-            this.receitas = new ArrayList<>();
-        }
-        this.receitas.add(receita);
-
     }
 
     @Override
