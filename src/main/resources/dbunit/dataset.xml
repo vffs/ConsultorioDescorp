@@ -48,11 +48,30 @@
                 TXT_LOGIN = "mariajuliana" TXT_SENHA = "mariaj123" TXT_SEXO="F">
     </TB_USUARIO>
                 <TB_PACIENTE ID_USUARIO="8" TXT_PLANO="HAPVIDA"></TB_PACIENTE> 
+                <!-- Usuario id = 9 (funcionario) -->
+    <TB_USUARIO DISC_USUARIO = "F" TXT_NOME="Julia Gomes" TXT_EMAIL = "Juliagomes@gmail.com" 
+                TXT_LOGIN= "juliagomes" TXT_SENHA = "julia123" TXT_SEXO="F">
+    </TB_USUARIO>
+                <TB_FUNCIONARIO ID_USUARIO="9" TXT_TIPO_FUNCIONARIO="MEDICO" TXT_ESCOLARIDADE="ENSINO SUPERIOR COMPLETO" TXT_ESPECIALIDADE="HOTORRINOLARINGOLOGISTA"></TB_FUNCIONARIO>
                             
     <!-- Marcar Consulta id = 1 -->      
     <TB_MARCAR_CONSULTA TXT_DATA="2018-09-25" TXT_HORA="14:30H" ID_USUARIO="3" ></TB_MARCAR_CONSULTA> 
     
      <!-- Marcar Consulta id = 2 -->      
     <TB_MARCAR_CONSULTA TXT_DATA="2018-09-28" TXT_HORA="14:45H" ID_USUARIO="2" ></TB_MARCAR_CONSULTA>    
-
+    
+    <!-- Exame id = 1 -->  
+    <TB_EXAME TXT_NOME="Ultrasom do torax" ID_USUARIO="5" ></TB_EXAME>
+    
+    <!-- Exame id = 2 -->  
+    <TB_EXAME TXT_NOME="Raio X da face" ID_USUARIO="9" ></TB_EXAME>
+    
+    <!-- Exame id = 3 -->  
+    <TB_EXAME TXT_NOME="Tomografia da face" ID_USUARIO="9" ></TB_EXAME>
+    
+    <!-- Exame id = 4 -->  
+    <TB_EXAME TXT_NOME="Hemograma completo" ID_USUARIO="5" ></TB_EXAME>
+      
+     <!-- Exame id = 5 -->  
+    <TB_EXAME TXT_NOME="Esteira" ID_USUARIO="5" ></TB_EXAME>
 </dataset>
