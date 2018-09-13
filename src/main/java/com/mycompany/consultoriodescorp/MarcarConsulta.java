@@ -1,7 +1,9 @@
 package com.mycompany.consultoriodescorp;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,10 +35,13 @@ public class MarcarConsulta implements Serializable {
     private Date dataConsuta;
     @Column(name = "TXT_HORA")
     private String hora;
-   /* @JoinColumn(name="ID_USUARIO")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Funcionario medico;*/
-    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "TB_CONSULTA_MEDICOS", joinColumns = {
+        @JoinColumn(name = "ID_CONSULTA")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_USUARIO")})
+    private List<Funcionario> medicos;
+ 
     @JoinColumn(name="ID_USUARIO")
     @OneToOne(fetch = FetchType.LAZY)
     private Paciente paciente;
@@ -63,13 +70,17 @@ public class MarcarConsulta implements Serializable {
         this.hora = hora;
     }
 
-    /*public Funcionario getMedico() {
-        return medico;
+    public List<Funcionario> getMedicos() {
+        return medicos;
+        
     }
-
-    public void setMedico(Funcionario medico) {
-        this.medico = medico;
-    }*/
+    public void setMedicos(Funcionario medico) {
+        
+        if (this.medicos == null) {
+            this.medicos = new ArrayList<>();
+        }
+        this.medicos.add(medico);
+    }
 
     public Paciente getPaciente() {
         return paciente;

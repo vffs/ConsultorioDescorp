@@ -1,6 +1,5 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Exame;
 import com.mycompany.consultoriodescorp.Funcionario;
 import com.mycompany.consultoriodescorp.Receita;
 import java.util.HashMap;
@@ -90,7 +89,6 @@ public class TesteReceita {
         funcionario=(Funcionario)query.getSingleResult();
         funcionario.getId();
         receita.setMedico(funcionario);
-        
         receita.setNomeRemedio("Busonid");
         receita.setTratamento("Desintupir vias respiratorias");
         receita.setDuracao("15 dias");

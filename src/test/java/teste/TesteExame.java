@@ -2,11 +2,6 @@ package teste;
 
 import com.mycompany.consultoriodescorp.Exame;
 import com.mycompany.consultoriodescorp.Funcionario;
-import com.mycompany.consultoriodescorp.MarcarConsulta;
-import com.mycompany.consultoriodescorp.Paciente;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -93,8 +88,7 @@ public class TesteExame {
         Funcionario funcionario;
         funcionario=(Funcionario)query.getSingleResult();
         funcionario.getId();
-        exame.setMedico(funcionario);
-        
+        exame.setMedico(funcionario);  
         exame.setNome("Ecocardiograma"); 
         
         em.persist(exame);

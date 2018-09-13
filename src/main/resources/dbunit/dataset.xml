@@ -65,6 +65,12 @@
      <!-- Marcar Consulta id = 2 -->      
     <TB_MARCAR_CONSULTA TXT_DATA="2018-09-28" TXT_HORA="14:45H" ID_USUARIO="2" ></TB_MARCAR_CONSULTA>    
     
+    <!-- Consulta Medicos id = 1 --> 
+    <TB_CONSULTA_MEDICOS ID_CONSULTA="1" ID_USUARIO="9"></TB_CONSULTA_MEDICOS>
+    
+    <!-- Consulta Medicos id = 2 --> 
+    <TB_CONSULTA_MEDICOS ID_CONSULTA="2" ID_USUARIO="5"></TB_CONSULTA_MEDICOS>
+    
     <!-- Exame id = 1 -->  
     <TB_EXAME TXT_NOME="Ultrasom do torax" ID_USUARIO="5" ></TB_EXAME>
     
