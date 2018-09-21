@@ -88,7 +88,8 @@ public class TesteExame {
         Funcionario funcionario;
         funcionario=(Funcionario)query.getSingleResult();
         funcionario.getId();
-        exame.setMedico(funcionario);  
+        exame.setMedico(funcionario);
+        
         exame.setNome("Ecocardiograma"); 
         
         em.persist(exame);

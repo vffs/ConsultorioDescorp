@@ -7,6 +7,7 @@
     <class>com.mycompany.consultoriodescorp.Usuario</class>
     <class>com.mycompany.consultoriodescorp.MarcarConsulta</class>
     <class>com.mycompany.consultoriodescorp.Exame</class>
+    <class>com.mycompany.consultoriodescorp.Remedio</class>
     <class>com.mycompany.consultoriodescorp.Receita</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/consultorio?zeroDateTimeBehavior=convertToNull"/>

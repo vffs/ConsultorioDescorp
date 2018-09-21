@@ -74,7 +74,7 @@ public class MarcarConsulta implements Serializable {
         return medicos;
         
     }
-    public void setMedicos(Funcionario medico) {
+    public void adicionarMedico(Funcionario medico) {
         
         if (this.medicos == null) {
             this.medicos = new ArrayList<>();

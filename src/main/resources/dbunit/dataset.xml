@@ -60,16 +60,10 @@
                 <TB_FUNCIONARIO ID_USUARIO="10" TXT_TIPO_FUNCIONARIO="MEDICO" TXT_ESCOLARIDADE="ENSINO SUPERIOR COMPLETO" TXT_ESPECIALIDADE="DERMATOLOGISTA"></TB_FUNCIONARIO>
                                      
     <!-- Marcar Consulta id = 1 -->      
-    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-25" TXT_HORA="14:30H" ID_USUARIO="3" ></TB_MARCAR_CONSULTA> 
+    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-25" TXT_HORA="14:30H" ID_USUARIO="5" ></TB_MARCAR_CONSULTA> 
     
      <!-- Marcar Consulta id = 2 -->      
-    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-28" TXT_HORA="14:45H" ID_USUARIO="2" ></TB_MARCAR_CONSULTA>    
-    
-    <!-- Consulta Medicos id = 1 --> 
-    <TB_CONSULTA_MEDICOS ID_CONSULTA="1" ID_USUARIO="9"></TB_CONSULTA_MEDICOS>
-    
-    <!-- Consulta Medicos id = 2 --> 
-    <TB_CONSULTA_MEDICOS ID_CONSULTA="2" ID_USUARIO="5"></TB_CONSULTA_MEDICOS>
+    <TB_MARCAR_CONSULTA TXT_DATA="2018-09-28" TXT_HORA="14:45H" ID_USUARIO="9" ></TB_MARCAR_CONSULTA>    
     
     <!-- Exame id = 1 -->  
     <TB_EXAME TXT_NOME="Ultrasom do torax" ID_USUARIO="5" ></TB_EXAME>
@@ -84,21 +78,36 @@
     <TB_EXAME TXT_NOME="Hemograma completo" ID_USUARIO="5" ></TB_EXAME>
       
      <!-- Exame id = 5 -->  
-    <TB_EXAME TXT_NOME="Esteira" ID_USUARIO="5" ></TB_EXAME>
+    <TB_EXAME TXT_NOME="Esteira" ID_USUARIO="5" ></TB_EXAME>  
     
     <!-- Receita id = 1 -->  
-    <TB_RECEITA TXT_NOME_REMEDIO="Atensina" TXT_TRATAMENTO="Pressão alta" TXT_DURACAO="3 meses" ID_USUARIO="5" ></TB_RECEITA>
+    <TB_RECEITA  TXT_DATA_RECEITA = "2018-09-25" ID_USUARIO="5" ></TB_RECEITA>
     
     <!-- Receita id = 2 -->  
-    <TB_RECEITA TXT_NOME_REMEDIO="Atenolol" TXT_TRATAMENTO="Pressão alta" TXT_DURACAO="2 meses" ID_USUARIO="5" ></TB_RECEITA>
+    <TB_RECEITA TXT_DATA_RECEITA = "2018-09-25" ID_USUARIO="5" ></TB_RECEITA>
     
     <!-- Receita id = 3 -->  
-    <TB_RECEITA TXT_NOME_REMEDIO="Aerolim" TXT_TRATAMENTO="Expectorante" TXT_DURACAO="15 dias" ID_USUARIO="9" ></TB_RECEITA>
+    <TB_RECEITA  TXT_DATA_RECEITA = "2018-09-28" ID_USUARIO="9" ></TB_RECEITA>
     
     <!-- Receita id = 4 -->  
-    <TB_RECEITA TXT_NOME_REMEDIO="Cetoconazol" TXT_TRATAMENTO="Antifungico" TXT_DURACAO="20 dias" ID_USUARIO="10" ></TB_RECEITA>
+    <TB_RECEITA  TXT_DATA_RECEITA = "2018-09-28" ID_USUARIO="10" ></TB_RECEITA>
 
    <!-- Receita id = 5 -->  
-    <TB_RECEITA TXT_NOME_REMEDIO="Pomada Bepantol" TXT_TRATAMENTO="Queimadura" TXT_DURACAO="7 dias" ID_USUARIO="10" ></TB_RECEITA>
- 
+    <TB_RECEITA  TXT_DATA_RECEITA = "2018-09-28" ID_USUARIO="10" ></TB_RECEITA>
+   
+    <!-- Remedio id = 1 -->  
+    <TB_REMEDIO  TXT_REMEDIO="Atensina" TXT_TRATAMENTO="Pressão alta" TXT_DURACAO="3 meses"></TB_REMEDIO>
+    
+    <!-- Remedio id = 2 -->  
+    <TB_REMEDIO  TXT_REMEDIO="Atenolol" TXT_TRATAMENTO="Pressão alta" TXT_DURACAO="2 meses"></TB_REMEDIO>
+    
+    <!-- Remedio id = 3 -->  
+    <TB_REMEDIO  TXT_REMEDIO="Aerolim" TXT_TRATAMENTO="Expectorante" TXT_DURACAO="15 dias"></TB_REMEDIO>
+    
+    <!-- Remedio id = 4 -->  
+    <TB_REMEDIO  TXT_REMEDIO="Cetoconazol" TXT_TRATAMENTO="Antifungico" TXT_DURACAO="20 dias"></TB_REMEDIO>
+    
+    <!-- Remedio id = 5 -->  
+    <TB_REMEDIO  TXT_REMEDIO="Pomada Bepantol" TXT_TRATAMENTO="Queimadura" TXT_DURACAO="7 dias" ></TB_REMEDIO>
+    
 </dataset>

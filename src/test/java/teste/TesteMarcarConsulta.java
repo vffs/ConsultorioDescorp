@@ -92,7 +92,7 @@ public class TesteMarcarConsulta {
         Funcionario funcionario;
         funcionario=(Funcionario)query.getSingleResult();
         funcionario.getId();
-        marcar.setMedicos(funcionario);
+        marcar.adicionarMedico(funcionario);
         
         String consulta1 = "SELECT p FROM Paciente p WHERE p.id=?2";
         Query query1 = em.createQuery(consulta1); 
