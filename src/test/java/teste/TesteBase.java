@@ -1,46 +1,33 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Exame;
-import com.mycompany.consultoriodescorp.Funcionario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-
 import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author valeria
  */
-
-public class TesteInicial {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@SuppressWarnings("JPQLValidation")
+public class TesteBase {
     
     private static EntityManagerFactory emf;
-    private static Logger logger = Logger.getGlobal();
-    private EntityManager em;
+    public static Logger logger = Logger.getGlobal();
+    public EntityManager em;
     private EntityTransaction et;
 
-    public TesteInicial() {
-    }
-   
-    public void rodarTesteAntesTeste(){
-        setUpClass();
-        tearDownClass();
-        setUp();
-        tearDown();
-        beginTransaction();
-        commitTransaction();
+    public TesteBase() {
     }
     
     @BeforeClass
@@ -83,14 +70,5 @@ public class TesteInicial {
         }
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
-
-
-    public EntityManager getEm() {
-        return em;
-    }
-  
     
 }

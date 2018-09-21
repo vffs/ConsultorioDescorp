@@ -9,17 +9,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
@@ -27,60 +18,12 @@ import org.junit.runners.MethodSorters;
 
 /**
  *
- * @author MASC
+ * @author Valéria
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
-public class TesteMarcarConsulta {
-
-    private static EntityManagerFactory emf;
-    private static Logger logger = Logger.getGlobal();
-    private EntityManager em;
-    private EntityTransaction et;
-
-    public TesteMarcarConsulta() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-        //logger.setLevel(Level.INFO);
-        logger.setLevel(Level.SEVERE);
-        emf = Persistence.createEntityManagerFactory("consultorio");
-        DbUnitUtil.inserirDados();
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        emf.close();
-    }
-
-    @Before
-    public void setUp() {
-        em = emf.createEntityManager();
-        beginTransaction();
-    }
-
-    @After
-    public void tearDown() {
-        commitTransaction();
-        em.close();
-    }
-
-    private void beginTransaction() {
-        et = em.getTransaction();
-        et.begin();
-    }
-
-    private void commitTransaction() {
-        try {
-            et.commit();
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
-            et.rollback();
-            fail(ex.getMessage());
-        }
-    }
-
+public class TesteMarcarConsulta extends TesteBase {
+    
     @Test
     public void t01_persistirMarcarConsulta() {
         logger.info("Executando t01: persistir Marcar consulta");
@@ -159,11 +102,9 @@ public class TesteMarcarConsulta {
         String dataConsulta = dateFormat.format((Date) marcar.getDataConsuta());
         assertEquals("05-10-2018", dataConsulta);
     }
-    
-     
 
     @Test
-    public void t05_delete() {
+    public void t04_delete() {
         logger.info("Executando t05: DELETE cosulta marcada");
         MarcarConsulta marcar;
         String consulta = "SELECT mc FROM MarcarConsulta mc WHERE mc.id=?1";
