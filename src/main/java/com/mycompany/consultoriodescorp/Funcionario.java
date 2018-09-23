@@ -16,15 +16,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_FUNCIONARIO")
 @DiscriminatorValue(value = "F")
-@PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+@PrimaryKeyJoinColumn(name = "ID_FUNCIONARIO",referencedColumnName ="ID_USUARIO")
 public class Funcionario extends Usuario implements Serializable {
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "TXT_TIPO_FUNCIONARIO")
+    @Column(name = "CL_TIPO_FUNCIONARIO")
     private TipoFuncionario tipo;
-    @Column(name = "TXT_ESCOLARIDADE")
+    @Column(name = "CL_ESCOLARIDADE")
     private String escolaridade;
-    @Column(name = "TXT_ESPECIALIDADE")
+    @Column(name = "CL_ESPECIALIDADE")
     private String especialidade;
 
     public TipoFuncionario getTipo() {

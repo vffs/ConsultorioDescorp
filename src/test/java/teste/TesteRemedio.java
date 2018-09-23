@@ -74,8 +74,8 @@ public class TesteRemedio extends TesteBase{
     }
     
     @Test
-    public void t05_delete() {
-        logger.info("Executando t05: DELETE Remedio");
+    public void t04_delete() {
+        logger.info("Executando t04: DELETE Remedio");
         Remedio remedio;
         String consulta = "SELECT r FROM  Remedio r WHERE r.id=?1";
         Query query = em.createQuery(consulta);

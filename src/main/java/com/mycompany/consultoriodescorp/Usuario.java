@@ -28,16 +28,17 @@ import javax.persistence.Table;
 public abstract class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="ID_USUARIO")
     private Long id;
-    @Column(name="TXT_NOME")
+    @Column(name="CL_NOME")
     private String nome;
-    @Column(name="TXT_LOGIN")
+    @Column(name="CL_LOGIN")
     private String login;
-    @Column(name="TXT_SENHA")
+    @Column(name="CL_SENHA")
     private String senha;
-    @Column(name="TXT_EMAIL")
+    @Column(name="CL_EMAIL")
     private String email;
-    @Column(name="TXT_SEXO")
+    @Column(name="CL_SEXO")
     private String sexo;
 
     public Long getId() {

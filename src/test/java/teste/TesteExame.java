@@ -1,7 +1,6 @@
 package teste;
 
 import com.mycompany.consultoriodescorp.Exame;
-import com.mycompany.consultoriodescorp.Funcionario;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,6 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
+
 /**
  *
  * @author Valéria
@@ -22,17 +22,9 @@ public class TesteExame extends TesteBase {
     @Test
     public void t01_persistiExame() {
         logger.info("Executando t01: persistir exame");
-        
+
         Exame exame = new Exame();
-        String consulta = "SELECT f FROM Funcionario f WHERE f.id=?1";
-        Query query = em.createQuery(consulta); 
-        query.setParameter(1,5);
-        Funcionario funcionario;
-        funcionario=(Funcionario)query.getSingleResult();
-        funcionario.getId();
-        exame.setMedico(funcionario);
-        
-        exame.setNome("Ecocardiograma"); 
+        exame.setNome("Ecocardiograma");
         
         em.persist(exame);
         em.flush();
@@ -47,39 +39,38 @@ public class TesteExame extends TesteBase {
         String consulta = "SELECT e FROM Exame e WHERE e.nome=?1";
         Query query = em.createQuery(consulta);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1,"Ultrasom do torax");
+        query.setParameter(1, "Ultrasom do torax");
         exame = (Exame) query.getSingleResult();
         exame.setNome("Tomografia do torax");
-       
+
         em.flush();
         query.setParameter(1, "Tomografia do torax");
         exame = (Exame) query.getSingleResult();
-        
+
         assertEquals("Tomografia do torax", exame.getNome());
 
     }
-   
-    
+
     @Test
     public void t03_atualizarExameMerge() {
         logger.info("Executando t03: atualizar exame com Merge");
         Exame exame;
-        String consulta = "SELECT e FROM Exame e WHERE e.nome=?1";
+        String consulta = "SELECT e FROM Exame e WHERE e.id=?1";
         Query query = em.createQuery(consulta);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1 ,"Esteira");
+        query.setParameter(1, 5);
         exame = (Exame) query.getSingleResult();
         em.clear();
-        exame.setNome("Ultrasom do torax");
+        exame.setNome("Tomografia da face");
         em.merge(exame);
         em.flush();
-        
-        query.setParameter(1 ,"Ultrasom do torax");
+
+        query.setParameter(1, 5);
         exame = (Exame) query.getSingleResult();
-        
-        assertEquals("Ultrasom do torax", exame.getNome());
+
+        assertEquals("Tomografia da face", exame.getNome());
     }
-    
+
     @Test
     public void t04_delete() {
         logger.info("Executando t05: DELETE exame");

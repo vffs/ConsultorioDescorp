@@ -1,9 +1,7 @@
 package com.mycompany.consultoriodescorp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,27 +21,26 @@ import javax.persistence.TemporalType;
  * @author valeria
  */
 @Entity
-@Table(name = "TB_MARCAR_CONSULTA")
-public class MarcarConsulta implements Serializable {
-
+@Table(name="TB_SOLICITAR_EXAME")
+public class SolicitarExame implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID_CONSULTA")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="ID_SOLICITAR_EXAME")
     private Long id;
-    @Column(name = "CL_DATA_CONS")
     @Temporal(TemporalType.DATE)
-    private Date dataConsuta;
-    @Column(name = "CL_HORA")
-    private String hora;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TB_CONSULTA_MEDICOS", joinColumns = {
-        @JoinColumn(name = "ID_CONSULTA")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_FUNCIONARIO")})
-    private List<Funcionario> medicos;
- 
+    @Column(name="CL_DATA_EXAME")
+    private Date dataExame;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_EXAME")
+    private Exame exame;
+    
+    @JoinColumn(name="ID_FUNCIONARIO")
+    @OneToOne(fetch=FetchType.LAZY)
+    private Funcionario medico;
+    
     @JoinColumn(name="ID_PACIENTE")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY)
     private Paciente paciente;
 
     public Long getId() {
@@ -55,33 +51,28 @@ public class MarcarConsulta implements Serializable {
         this.id = id;
     }
 
-    public Date getDataConsuta() {
-        return dataConsuta;
+    public Date getDataExame() {
+        return dataExame;
     }
 
-    public void setDataConsuta(Date dataConsuta) {
-        this.dataConsuta = dataConsuta;
+    public void setDataExame(Date dataExame) {
+        this.dataExame = dataExame;
     }
 
-    public String getHora() {
-        return hora;
+    public Exame getExame() {
+        return exame;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
 
-    public List<Funcionario> getMedicos() {
-        return medicos;
-        
+    public Funcionario getMedico() {
+        return medico;
     }
-    public void adicionarMedico(Funcionario medico) {
-        
-        if (this.medicos == null) {
-            this.medicos = new ArrayList<>();
-        }
-        this.medicos.add(medico);
-        
+
+    public void setMedico(Funcionario medico) {
+        this.medico = medico;
     }
 
     public Paciente getPaciente() {
@@ -94,7 +85,7 @@ public class MarcarConsulta implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
+          int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
@@ -110,11 +101,13 @@ public class MarcarConsulta implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MarcarConsulta other = (MarcarConsulta) obj;
+        final SolicitarExame other = (SolicitarExame) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
+    
+    
+    
 }

@@ -74,14 +74,6 @@ public class TesteMarcarConsulta extends TesteBase {
 
     }
     
-    private Date getData(Integer dia, Integer mes, Integer ano) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, ano);
-        c.set(Calendar.MONTH, mes);
-        c.set(Calendar.DAY_OF_MONTH, dia);
-        return c.getTime();
-    }
-    
     @Test
     public void t03_atualizarMarcarConsultaMerge() {
         logger.info("Executando t03: atualizar MarcarConsulta com Merge");

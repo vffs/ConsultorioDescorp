@@ -9,6 +9,7 @@
     <class>com.mycompany.consultoriodescorp.Exame</class>
     <class>com.mycompany.consultoriodescorp.Remedio</class>
     <class>com.mycompany.consultoriodescorp.Receita</class>
+    <class>com.mycompany.consultoriodescorp.SolicitarExame</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/consultorio?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

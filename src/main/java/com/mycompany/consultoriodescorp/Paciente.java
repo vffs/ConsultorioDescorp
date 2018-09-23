@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_PACIENTE")
 @DiscriminatorValue(value = "P")
-@PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+@PrimaryKeyJoinColumn(name = "ID_PACIENTE",referencedColumnName ="ID_USUARIO")
 public class Paciente extends Usuario implements Serializable {
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "TXT_PLANO")
+    @Column(name = "CL_PLANO")
     private TipoPlanoSaude plano;
 
     public TipoPlanoSaude getPlano() {

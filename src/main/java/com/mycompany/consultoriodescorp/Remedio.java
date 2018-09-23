@@ -5,15 +5,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,15 +24,18 @@ public class Remedio implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="ID_REMEDIO")
     private Long id;
-    @Column(name="TXT_REMEDIO")
+    @Column(name="CL_NOME_REMEDIO")
     private String nomeRemedio;
-    @Column(name = "TXT_TRATAMENTO")
+    @Column(name = "CL_TRATAMENTO")
     private String tratamento;
-    @Column(name = "TXT_DURACAO")
+    @Column(name = "CL_DURACAO")
     private String duracao;
-   
-
+    
+    @OneToMany(mappedBy = "remedio",fetch=FetchType.LAZY)
+    private List<Receita> receitas;
+    
     public Long getId() {
         return id;
     }
@@ -64,6 +64,18 @@ public class Remedio implements Serializable{
 
     public void setDuracao(String duracao) {
         this.duracao = duracao;
+    }
+
+    public List<Receita> getReceitas() {
+        return receitas;
+    }
+
+    public void adicionarReceitas(Receita receita) {
+        if(this.receitas == null){
+            this.receitas = new ArrayList<>();
+        }
+        this.receitas.add(receita);
+        
     }
     
     @Override

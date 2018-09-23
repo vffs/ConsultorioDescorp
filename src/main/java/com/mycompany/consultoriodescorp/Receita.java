@@ -1,11 +1,8 @@
 package com.mycompany.consultoriodescorp;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,21 +26,23 @@ public class Receita implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID_RECEITA")
     private Long id;
-    @Column(name = "TXT_DATA_RECEITA")
+    @Column(name = "CL_DATA_RECEITA")
     @Temporal(TemporalType.DATE)
     private Date dataReceita;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TB_RECEITA_REMEDIO", joinColumns = {
-        @JoinColumn(name = "ID_RECEITA")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_REMEDIO")})
-    private List<Remedio> remedios;
+    @JoinColumn(name="ID_REMEDIO")
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Remedio remedio;
     
-    @JoinColumn(name = "ID_USUARIO")
+    @JoinColumn(name = "ID_FUNCIONARIO")
     @OneToOne(fetch = FetchType.LAZY)
     private Funcionario medico;
+    
+    @JoinColumn(name = "ID_PACIENTE")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Paciente paciente;
 
     public Long getId() {
         return id;
@@ -56,23 +52,12 @@ public class Receita implements Serializable {
         this.id = id;
     }
 
-    public List<Remedio> getRemedios() {
-        return remedios;
+    public Remedio getRemedio() {
+        return remedio;
     }
 
-    public void adicionarRemedio(Remedio remedio) {
-        if(this.remedios==null){
-            this.remedios=new ArrayList<>();
-        }
-        this.remedios.add(remedio);
-    }
-
-    public Funcionario getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Funcionario medico) {
-        this.medico = medico;
+    public void setRemedio(Remedio remedio) {
+        this.remedio = remedio;
     }
 
     public Date getDataReceita() {
@@ -82,6 +67,22 @@ public class Receita implements Serializable {
     public void setDataReceita(Date dataReceita) {
         this.dataReceita = dataReceita;
     }
+    public Funcionario getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Funcionario medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+    
 
     @Override
     public int hashCode() {
