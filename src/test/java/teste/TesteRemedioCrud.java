@@ -17,7 +17,7 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
-public class TesteRemedio extends TesteBase{
+public class TesteRemedioCrud extends TesteBase{
 
     @Test
     public void t01_persistiRemedio() {

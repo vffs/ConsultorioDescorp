@@ -23,7 +23,7 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
-public class TesteReceita extends TesteBase {
+public class TesteReceitaCrud extends TesteBase {
 
     @Test
     public void t01_persistiReceita() {

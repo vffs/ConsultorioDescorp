@@ -22,7 +22,7 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
-public class TesteMarcarConsulta extends TesteBase {
+public class TesteMarcarConsultaCrud extends TesteBase {
     
     @Test
     public void t01_persistirMarcarConsulta() {
