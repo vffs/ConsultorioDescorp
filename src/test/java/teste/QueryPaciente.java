@@ -54,5 +54,30 @@ public class QueryPaciente extends TesteBase{
           
        
     }  
+    @Test
+    public void t4_SelecionarPacientePorNome(){
+        logger.info("Executando t4: Selecionar Paciente por nome");
+        List<Paciente> pacientes;
+        String consulta = "SELECT p FROM Paciente p WHERE p.nome LIKE :nome";
+        Query query = em.createQuery(consulta);
+        query.setParameter("nome", "Maria%");
+        pacientes = query.getResultList();
+        for(Paciente paciente : pacientes){
+            assertTrue(paciente.getNome().startsWith("Maria"));
+        }
+       assertEquals(2 , pacientes.size());
+    }
+    @Test
+    public void t5_SelecionarTodosOsPacientesPossuemGmail(){
+        logger.info("Executando t5: selecionar os pacientes que possuem gmail");
+        List<Paciente> pacientes;
+        TypedQuery<Paciente> query = em.createQuery("SELECT p FROM Paciente p WHERE p.email LIKE :email", Paciente.class);
+        query.setParameter( "email", "%@gmail.com");
+        pacientes = query.getResultList();
+        for(Paciente paciente : pacientes){
+            assertTrue(paciente.getEmail().endsWith("@gmail.com"));
+        }
+        assertEquals(5 , pacientes.size());
+    }   
 
 }

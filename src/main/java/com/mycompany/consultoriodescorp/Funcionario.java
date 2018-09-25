@@ -6,6 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -15,6 +17,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_FUNCIONARIO")
+@NamedQueries({
+    @NamedQuery(
+    name="TipoFuncionario",
+    query="SELECT f FROM Funcionario f WHERE f.tipo=?1"        
+    )}
+)
 @DiscriminatorValue(value = "F")
 @PrimaryKeyJoinColumn(name = "ID_FUNCIONARIO",referencedColumnName ="ID_USUARIO")
 public class Funcionario extends Usuario implements Serializable {
