@@ -1,9 +1,9 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Exame;
-import com.mycompany.consultoriodescorp.Funcionario;
-import com.mycompany.consultoriodescorp.Paciente;
-import com.mycompany.consultoriodescorp.SolicitarExame;
+import consultoriodescorp.Exame;
+import consultoriodescorp.Funcionario;
+import consultoriodescorp.Paciente;
+import consultoriodescorp.SolicitarExame;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

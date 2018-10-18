@@ -1,7 +1,7 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Exame;
-import com.mycompany.consultoriodescorp.Funcionario;
+import consultoriodescorp.Exame;
+import consultoriodescorp.Funcionario;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -22,12 +22,12 @@ public class TesteUpdateDelete extends TesteBase{
         update.setParameter(2, 5);
         update.executeUpdate();
         String consulta = "SELECT f FROM Funcionario f WHERE f.id=?1";
-        TypedQuery<Funcionario> query=em.createQuery(consulta,Funcionario.class);
+        TypedQuery<Funcionario> query=em.createQuery(consulta, Funcionario.class);
         query.setParameter(1, 5);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         Funcionario funcionario =(Funcionario) query.getSingleResult();
         
-        assertEquals("BolaQuadrada123",funcionario.getSenha());
+        assertEquals("BolaQuadrada123", funcionario.getSenha());
     }
     
     @Test(expected = NoResultException.class)
@@ -41,7 +41,7 @@ public class TesteUpdateDelete extends TesteBase{
         query.setParameter(1, 1);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.getSingleResult();
-        
+              
        
     }
 }

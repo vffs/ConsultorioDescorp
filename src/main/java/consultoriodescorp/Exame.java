@@ -1,4 +1,4 @@
-package com.mycompany.consultoriodescorp;
+package consultoriodescorp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+//import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Exame implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_EXAME")
     private Long id;
+   // @NotBlank
     @Column(name = "CL_NOME_EXAME")
     private String nome;
     

@@ -1,7 +1,7 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Funcionario;
-import com.mycompany.consultoriodescorp.TipoFuncionario;
+import consultoriodescorp.Funcionario;
+import consultoriodescorp.TipoFuncionario;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;

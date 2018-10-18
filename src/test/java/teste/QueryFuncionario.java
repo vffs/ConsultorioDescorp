@@ -1,9 +1,7 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Funcionario;
-import com.mycompany.consultoriodescorp.Paciente;
-import com.mycompany.consultoriodescorp.TipoFuncionario;
-import com.mycompany.consultoriodescorp.TipoPlanoSaude;
+import consultoriodescorp.Funcionario;
+import consultoriodescorp.TipoFuncionario;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -25,12 +23,11 @@ public class QueryFuncionario extends TesteBase {
         logger.info("Executando t01: listar tipo funcionario");
 
         List<Funcionario> funcionarios;
-        TipoFuncionario tipo = null;
         Query query = em.createNamedQuery("TipoFuncionario", Funcionario.class);
-        query.setParameter(1, tipo.SECRETARIA);
+        query.setParameter(1, TipoFuncionario.SECRETARIA);
         funcionarios = query.getResultList();
         for (Funcionario funcionario : funcionarios) {
-            funcionario.getTipo();
+            assertEquals(TipoFuncionario.SECRETARIA,funcionario.getTipo());
         }
         assertEquals(1, funcionarios.size());
     }
@@ -39,9 +36,9 @@ public class QueryFuncionario extends TesteBase {
     public void t02_contarQuantosFuncionariosSaoMedicos() {
         logger.info("Executando t02: contar quantos funcionario são medicos");
         Long resTipo;
-        TipoFuncionario tipo = null;
+        
         TypedQuery<Long> query = em.createQuery("SELECT COUNT(f) FROM Funcionario f WHERE f.tipo=?1", Long.class);
-        query.setParameter(1, tipo.MEDICO);
+        query.setParameter(1, TipoFuncionario.MEDICO);
         resTipo = query.getSingleResult();
 
         assertEquals(new Long(3), resTipo);
@@ -56,7 +53,7 @@ public class QueryFuncionario extends TesteBase {
         query.setParameter(1, "HOTORRINOLARINGOLOGISTA");
         funcionarios = query.getResultList();
         for (Funcionario funcionario : funcionarios) {
-            funcionario.getEspecialidade();
+           assertEquals("HOTORRINOLARINGOLOGISTA",funcionario.getEspecialidade()) ;
         }
         assertEquals(1, funcionarios.size());
 

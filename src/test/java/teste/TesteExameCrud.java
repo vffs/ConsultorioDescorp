@@ -1,6 +1,6 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Exame;
+import consultoriodescorp.Exame;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;

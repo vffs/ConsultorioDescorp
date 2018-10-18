@@ -1,8 +1,8 @@
 package teste;
 
-import com.mycompany.consultoriodescorp.Funcionario;
-import com.mycompany.consultoriodescorp.MarcarConsulta;
-import com.mycompany.consultoriodescorp.Paciente;
+import consultoriodescorp.Funcionario;
+import consultoriodescorp.MarcarConsulta;
+import consultoriodescorp.Paciente;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -59,15 +59,15 @@ public class TesteMarcarConsultaCrud extends TesteBase {
     public void t02_atualizarMarcarConsulta() {
         logger.info("Executando t02: atualizar Marcar Consulta ");
         MarcarConsulta marcar;
-        String consulta = "SELECT mc FROM MarcarConsulta mc WHERE mc.hora=?1";
+        String consulta = "SELECT mc FROM MarcarConsulta mc WHERE mc.id=?1";
         Query query = em.createQuery(consulta);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1,"14:30H");
+        query.setParameter(1, 1);
         marcar = (MarcarConsulta) query.getSingleResult();
         marcar.setHora("15:00H");
        
         em.flush();
-        query.setParameter(1, "15:00H");
+        query.setParameter(1, 1);
         marcar = (MarcarConsulta) query.getSingleResult();
         
         assertEquals("15:00H", marcar.getHora());
@@ -78,17 +78,17 @@ public class TesteMarcarConsultaCrud extends TesteBase {
     public void t03_atualizarMarcarConsultaMerge() {
         logger.info("Executando t03: atualizar MarcarConsulta com Merge");
         MarcarConsulta marcar;
-        String consulta = "SELECT mc FROM MarcarConsulta mc WHERE mc.dataConsuta=?1";
+        String consulta = "SELECT mc FROM MarcarConsulta mc WHERE mc.id=?1";
         Query query = em.createQuery(consulta);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1 ,getData(25,Calendar.SEPTEMBER,2018));
+        query.setParameter(1 ,1);
         marcar = (MarcarConsulta) query.getSingleResult();
         em.clear();
         marcar.setDataConsuta(getData(05,Calendar.OCTOBER,2018));
         em.merge(marcar);
         em.flush();
         
-        query.setParameter(1 ,getData(05,Calendar.OCTOBER,2018));
+        query.setParameter(1 ,1);
         marcar = (MarcarConsulta) query.getSingleResult();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String dataConsulta = dateFormat.format((Date) marcar.getDataConsuta());

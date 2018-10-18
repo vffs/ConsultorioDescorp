@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="consultorio" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.mycompany.consultoriodescorp.Funcionario</class>
-    <class>com.mycompany.consultoriodescorp.Paciente</class>
-    <class>com.mycompany.consultoriodescorp.Usuario</class>
-    <class>com.mycompany.consultoriodescorp.MarcarConsulta</class>
-    <class>com.mycompany.consultoriodescorp.Exame</class>
-    <class>com.mycompany.consultoriodescorp.Remedio</class>
-    <class>com.mycompany.consultoriodescorp.Receita</class>
-    <class>com.mycompany.consultoriodescorp.SolicitarExame</class>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/consultorio?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="root"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-      <property name="eclipselink.logging.level" value="FINE"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="consultorio" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>consultoriodescorp.Exame</class>
+        <class>consultoriodescorp.MarcarConsulta</class>
+        <class>consultoriodescorp.Usuario</class>
+        <class>consultoriodescorp.Paciente</class>
+        <class>consultoriodescorp.Funcionario</class>
+        <class>consultoriodescorp.Receita</class>
+        <class>consultoriodescorp.Remedio</class>
+        <class>consultoriodescorp.SolicitarExame</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/consultorio?zeroDateTimeBehavior=convertToNull"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+        </properties>    
+    </persistence-unit>
 </persistence>
