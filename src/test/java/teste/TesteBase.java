@@ -23,7 +23,7 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SuppressWarnings("JPQLValidation")
 public class TesteBase {
-    
+
     private static EntityManagerFactory emf;
     public static Logger logger = Logger.getGlobal();
     public EntityManager em;
@@ -31,7 +31,7 @@ public class TesteBase {
 
     public TesteBase() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
         //logger.setLevel(Level.INFO);
@@ -66,17 +66,19 @@ public class TesteBase {
         try {
             et.commit();
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
-            et.rollback();
-            fail(ex.getMessage());
+            //logger.log(Level.SEVERE, ex.getMessage(), ex);
+            if (et.isActive()) {
+                et.rollback();
+            }
+            //fail(ex.getMessage());
         }
     }
 
-   public Date getData(Integer dia, Integer mes, Integer ano) {
+    public Date getData(Integer dia, Integer mes, Integer ano) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, ano);
         c.set(Calendar.MONTH, mes);
         c.set(Calendar.DAY_OF_MONTH, dia);
         return c.getTime();
-    }  
+    }
 }

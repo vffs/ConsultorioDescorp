@@ -1,11 +1,18 @@
 package teste;
 
-import consultoriodescorp.Funcionario;
 import consultoriodescorp.Paciente;
-import consultoriodescorp.TipoFuncionario;
 import consultoriodescorp.TipoPlanoSaude;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.constraints.*;
+import org.hamcrest.CoreMatchers;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 /**
@@ -15,65 +22,32 @@ import org.junit.Test;
 public class TesteValidacao extends TesteBase {
 
     @Test
-    public void t01_criarPacienteValido1() {
+    public void t01_CriarPacienteInvalido() {
         Paciente p = new Paciente();
-
-        p.setNome("Jose Augusto");
-        p.setEmail("joseaugusto@hotmail.com");
-        p.setLogin("joseaugusto");
-        p.setSenha("JoseA123");
-        p.setSexo("M");
-        p.setPlano(TipoPlanoSaude.SEMPLANO);
-      /*  Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        validator.validate(p);*/
-        em.persist(p);
-        em.flush();
-        assertNotNull(p.getId());
-    }
-
-    @Test
-    public void t02_CriarPacienteInvalido() {
-        Paciente p = new Paciente();
-        //try{
-        p.setNome("Carolina Maria");
+        p.setNome("CAROLINA");/* nome invalido*/
         p.setEmail("carolina#teste");/* e-mail invalido*/
         p.setLogin(" Carolina Maria ");/* login com espaço*/
         p.setSexo("F");
         p.setPlano(TipoPlanoSaude.UNIMED);
         p.setSenha("CarolinaMaria123");
-        em.persist(p);
-        em.flush();
-        assertTrue(false);
-        /*}catch(ConstraintViolationException ex){
-            Logger.getGlobal().info(ex.getMessage());
-            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
 
-            if (logger.isLoggable(Level.INFO)) {
-                for (ConstraintViolation violation : constraintViolations) {
-                    Logger.getGlobal().log(Level.INFO, "{0}.{1}: {2}", new Object[]{violation.getRootBeanClass(), violation.getPropertyPath(), violation.getMessage()});
-                }
-            }
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        assertEquals(false, validator.validate(p).isEmpty());
+        Set<ConstraintViolation<Paciente>> constraintViolations = validator.validate(p);
+        for (ConstraintViolation violation : constraintViolations) {
+            String mensagemErro = violation.getRootBeanClass() + "." + violation.getPropertyPath() + ": " + violation.getMessage();
+            System.out.println("*****************   " + mensagemErro);
+            assertThat(mensagemErro,
+                    CoreMatchers.anyOf(
+                            startsWith("class consultoriodescorp.Paciente.nome: Deve possuir uma única letra maiúscula, seguida por letras minúsculas."),
+                            startsWith("class consultoriodescorp.Paciente.email: Não é um endereço de e-mail"),
+                            startsWith("class consultoriodescorp.Paciente.senha: A senha deve possuir pelo menos um caracter : maiúsculo, minúsculo e número."),
+                            startsWith("class consultoriodescorp.Paciente.login: Não deve conter espaços")
+                    )
+            );
+        }
 
-            assertEquals(2, constraintViolations.size());
-            assertNull(p.getId());
-        }*/
+        assertEquals(4, constraintViolations.size());
     }
-    
-    @Test
-    public void T03_criarFuncionarioValido(){
-        Funcionario f = new Funcionario();
-        
-        f.setNome("Clarisse Lima");
-        f.setEmail("clarissel@yahoo.com.br");
-        f.setLogin("clarisse.lima");
-        f.setSexo("F");
-        f.setSenha("Clarisselima123");
-        f.setTipo(TipoFuncionario.MEDICO);
-        f.setEscolaridade("ENSINO MEDIO COMPLETO");
-        f.setEspecialidade("FISIOTERAPEUTA");
-        
-        em.persist(f);
-        em.flush();
-        assertNotNull(f.getId());
-    }
+
 }

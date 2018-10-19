@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -34,18 +36,18 @@ public abstract class Usuario implements Serializable {
     @Column(name="ID_USUARIO")
     private Long id;
     @NotBlank
-//    @Size(max=40)
-   // @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{consultoriodescorp.Usuario.nome}")
+    @Size(max=40)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{consultoriodescorp.Usuario.nome}")
     @Column(name="CL_NOME")
     private String nome;
     @NotBlank
     @Column(name="CL_LOGIN")
-   // @Pattern(regexp = "([^\\s])\\W +", message = "{consultoriodescorp.Usuario.login}")
+    @Pattern(regexp = "([^\\s])\\W +", message = "{consultoriodescorp.Usuario.login}")
     private String login;
     @NotBlank
     @Column(name="CL_SENHA")
-  //  @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper}))",message="{consultoriodescorp.Usuario.senha}")
-    //@Size(min=6,max=20)
+    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper}))",message="{consultoriodescorp.Usuario.senha}")
+    @Size(min=6,max=20)
     private String senha;
     @NotBlank
     @Email
