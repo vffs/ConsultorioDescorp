@@ -18,7 +18,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -32,11 +31,11 @@ public class MarcarConsulta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_CONSULTA")
     private Long id;
-    //@NotBlank
+    
     @Column(name = "CL_DATA_CONS")
     @Temporal(TemporalType.DATE)
     private Date dataConsuta;
-    //s@NotBlank
+    
     @Column(name = "CL_HORA")
     private String hora;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,7 +47,7 @@ public class MarcarConsulta implements Serializable {
  
     @JoinColumn(name="ID_PACIENTE")
     @OneToOne(fetch = FetchType.LAZY)
-    //@NotBlank
+   
     private Paciente paciente;
 
     public Long getId() {

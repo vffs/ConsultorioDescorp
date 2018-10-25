@@ -29,7 +29,7 @@ public class TestePacienteCrud extends TesteBase{
         paciente.setNome("Maria Joana");
         paciente.setLogin("mariajoana");
         paciente.setEmail("mariaj@gmail.com");
-        paciente.setSenha("mariaj123");
+        paciente.setSenha("Mariaj123");
         paciente.setSexo("F");
         paciente.setPlano(TipoPlanoSaude.HAPVIDA);
 

@@ -10,7 +10,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-//import javax.validation.constraints.NotBlank;
 
 /**
  *

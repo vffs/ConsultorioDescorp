@@ -18,7 +18,7 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
-
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -53,13 +53,13 @@ public class Remedio implements Serializable{
     @Column(name="ID_REMEDIO")
     private Long id;
     @Column(name="CL_NOME_REMEDIO")
-    //@NotBlank
+    @NotBlank
     private String nomeRemedio;
     @Column(name = "CL_TRATAMENTO")
-   // @NotBlank
+    @NotBlank
     private String tratamento;
     @Column(name = "CL_DURACAO")
-  //  @NotBlank
+    @NotBlank
     private String duracao;
     
     @OneToMany(mappedBy = "remedio",fetch=FetchType.LAZY)

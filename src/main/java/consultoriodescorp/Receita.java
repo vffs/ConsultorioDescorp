@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -29,24 +28,21 @@ public class Receita implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_RECEITA")
     private Long id;
+   
     @Column(name = "CL_DATA_RECEITA")
     @Temporal(TemporalType.DATE)
-    //@NotBlank
     private Date dataReceita;
     
     @JoinColumn(name="ID_REMEDIO")
     @ManyToOne(fetch=FetchType.LAZY)
-    //@NotBlank
     private Remedio remedio;
     
     @JoinColumn(name = "ID_FUNCIONARIO")
     @OneToOne(fetch = FetchType.LAZY)
-    //@NotBlank
     private Funcionario medico;
     
     @JoinColumn(name = "ID_PACIENTE")
     @OneToOne(fetch = FetchType.LAZY)
-   // @NotBlank
     private Paciente paciente;
 
     public Long getId() {
