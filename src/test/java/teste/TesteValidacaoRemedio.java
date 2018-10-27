@@ -1,6 +1,5 @@
 package teste;
 
-import consultoriodescorp.Exame;
 import consultoriodescorp.Remedio;
 import java.util.Set;
 import javax.persistence.TypedQuery;

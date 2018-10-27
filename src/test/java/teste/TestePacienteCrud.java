@@ -82,7 +82,7 @@ public class TestePacienteCrud extends TesteBase{
 
         Paciente paciente = new Paciente();
         paciente.setNome("Joao Pedro");
-        paciente.setLogin("Joao Pedro");
+        paciente.setLogin("Joaopedro");
         paciente.setEmail("joaopedro@gmail.com");
         paciente.setSenha("joao123");
         paciente.setSexo("M");

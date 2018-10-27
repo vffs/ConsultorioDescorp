@@ -10,7 +10,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -24,10 +23,10 @@ import org.junit.runners.MethodSorters;
 @SuppressWarnings("JPQLValidation")
 public class TesteBase {
 
-    private static EntityManagerFactory emf;
-    public static Logger logger = Logger.getGlobal();
-    public EntityManager em;
-    private EntityTransaction et;
+    protected static EntityManagerFactory emf;
+    protected static Logger logger = Logger.getGlobal();
+    protected EntityManager em;
+    protected EntityTransaction et;
 
     public TesteBase() {
     }

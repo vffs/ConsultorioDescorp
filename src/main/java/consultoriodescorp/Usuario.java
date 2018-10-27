@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -39,8 +40,8 @@ public abstract class Usuario implements Serializable {
     @Column(name="CL_NOME")
     private String nome;
     @NotBlank
+    @Pattern(regexp = "([^\\s])\\w+", message = "{consultoriodescorp.Usuario.login}")
     @Column(name="CL_LOGIN")
-    //@Pattern(regexp = "([^\\s])\\W +", message = "{consultoriodescorp.Usuario.login}")
     private String login;
     @NotBlank
     @Column(name="CL_SENHA")
